@@ -1,12 +1,38 @@
+let homes = ["Mansion", "Apartment", "Shack", "House", "McDonalds trashcan", "Bunch of Plastic Bags", "Paper Dollhouse"];
+let cars = ["Jet", "Supercar", "Convertible", "Box with wheels", "Uncomfortably Large Skateboard", "Bag with friction-free Underside"];
+let deaths = ["Eating a poisonous potato", "Getting struck by lightning", "Getting impaled by a rusted beam", "Getting eaten by a zombie", "Getting blown up by a creeper", "Getting headshot", "Meeting with the devil and selling your soul for something cheap. Ain't that a doozy?", "...actually you'll never die. Forget about this."];
+
+function mash()
+{
+    console.log(""
+    +"\nYou will live in a " + getHome() + ", and you will have " + getChildrenCount() + " kids!"
+    +"\nYou’ll drive a " + getCar()
+    +"\nYou'll die in " + getDeathAge()
+    +"\nYou are a " + getJob()
+
+    +"\n\nYour stats: "
+    +"\nStrength: " + getStats("Strength")
+    +"\nSpeed: " + getStats("Speed")
+    +"\nCharisma: " + getStats("Charisma")
+    +"\nIntelligence: " + getStats("Intelligence")
+    +"\nDexterity: " + getStats("Dexterity")
+    +"\nMorals: " + getStats("Morals")
+    );
+
+}
+
+function randomizerArray(array)
+{
+    return Math.floor(Math.random() * array.length);
+}
 function getHome()
 {
-    let arr = ["Mansion", "Apartment", "Shack", "House", "McDonalds trashcan", "Bunch of Plastic Bags", "Paper Dollhouse"];
-    if(process.argv[2] != undefined)  //checks for if the user left the input empty
-    {
-        arr.push(process.argv[2]);
-    }
-    let index = Math.floor(Math.random() * arr.length);
-    return arr[index];
+    // if(process.argv[2] != undefined)  //checks for if the user left the input empty also need to check the type
+    // {
+    //     arr.push(process.argv[2]);
+    // }
+    let index = randomizerArray(homes);
+    return homes[index];
 }
 function getChildrenCount()
 {
@@ -31,26 +57,26 @@ function getChildrenCount()
 }
 function getCar()
 {
-    let arr = ["Jet", "Supercar", "Convertible", "Box with wheels", "Uncomfortably Large Skateboard", "Bag with friction-free Underside"];
-    if(process.argv[3] != undefined)
-    {
-        arr.push(process.argv[3]);
-    }
-    let index = Math.floor(Math.random() * arr.length);
-    let str = arr[index];
+    // if(process.argv[3] != undefined)
+    // {
+    //     arr.push(process.argv[3]);
+    // }
+    let index = randomizerArray(cars);
+    let str = cars[index];
     return str;
 }
 function getDeathAge()
 {
     let deathAge = Math.round( (Math.random()*100) * ((Math.random()*10)) );
-    return deathAge + " years!";
+    let deathReason = deaths[randomizerArray(deaths)];
+    return deathAge + " years" + " because you'll be " + deathReason;
 }
 function getJob()
 {
     let job1 = ["Earth", "Paper", "Plastic", "Molecules", "Plant", "Fire", "Gas", "Fabric", "Nanotechnology", "Blood", "Life", "Apocalypse", "Waste", "Lego", "Poultry", "Questionable", "Universe", "Darkness", "Storm"];
     let job2 = ["Maker", "Builder", "Designer", "Eater", "Destroyer", "Moderator", "Stealer", "Manipulator", "Knight", "Healer", "Musician", "Commander", "Warrior", "Thaumaturgist", "Paladin"];
 
-    return job2[ Math.floor(Math.random() * job2.length) ] + " of " + job1[ Math.floor(Math.random() * job1.length) ];
+    return job2[ randomizerArray(job2) ] + " of " + job1[ randomizerArray(job1) ];
 }
 function getStats(stat) //this shoud be a string
 {
@@ -173,17 +199,12 @@ function getStats(stat) //this shoud be a string
     
     return statNum + " - " + str;
 }
-console.log(""
-            +"\nYou will live in a " + getHome() + ", and you will have " + getChildrenCount() + " kids!"
-            +"\nYou’ll drive a " + getCar()
-            +"\nYou'll live for another " + getDeathAge()
-            +"\nYou are a " + getJob()
 
-            +"\n\nYour stats: "
-            +"\nStrength: " + getStats("Strength")
-            +"\nSpeed: " + getStats("Speed")
-            +"\nCharisma: " + getStats("Charisma")
-            +"\nIntelligence: " + getStats("Intelligence")
-            +"\nDexterity: " + getStats("Dexterity")
-            +"\nMorals: " + getStats("Morals")
-);
+
+mash();
+
+// rl.question("What do you want to live in? (You can input only 1 name)", (answer) => {
+//     let home = answer;
+    
+//     rl.close();
+// });
