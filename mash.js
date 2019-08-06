@@ -200,11 +200,30 @@ function getStats(stat) //this shoud be a string
     return statNum + " - " + str;
 }
 
+// mash();
 
-mash();
+const readline = require('readline');
 
-// rl.question("What do you want to live in? (You can input only 1 name)", (answer) => {
-//     let home = answer;
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question("What do you want to live in? (You can input only 1 names, anything other than strings will be ignored)", (answer) => {
+    if(typeof answer == string)
+    {
+        homes.push(answer);
+    }
+    else console.log("You have failed to fulfill the criteria of answering this question. Your input will not be registered");
+
+    rl.close(); 
+});
+rl.question("What do you want to live in? (You can input only 1 names, anything other than strings will be ignored)", (answer) => {
+    if(typeof answer == string)
+    {
+        homes.push(answer);
+    }
+    else console.log("You have failed to fulfill the criteria of answering this question. Your input will not be registered");
     
-//     rl.close();
-// });
+    rl.close(); 
+});
